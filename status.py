@@ -3,9 +3,7 @@ import discord, traceback, datetime, os, time
 
 CHANNEL = 'channel'
 MESSAGE = 'message'
-
-running = False
-weird_restarts = 0
+COLLECT_STATS = 'stats'
 
 class Plugin(plugin.OnReadyPlugin, plugin.AdminPlugin):
     ''''Displays pretty messages about the bot's status on the Idea Development Server
@@ -57,9 +55,10 @@ class Plugin(plugin.OnReadyPlugin, plugin.AdminPlugin):
             author['icon_url'] = self.bot.user.avatar_url
             author['url'] = r'https://github.com/NGnius/IdeaBot' # Remove if perceived as advertising
 
-            await self.edit_message(self.message, embed=embed.create_embed(description=description, author=author))
+            await self.edit_message(self.message, new_content=' ', embed=embed.create_embed(description=description, author=author))
 
-            discordstats.dumpMessages(self.bot, filename='./data/msgdump%s.csv' % self.startup_time.isoformat())
+            if COLLECT_STATS in self.config:
+                discordstats.dumpMessages(self.bot, filename='./data/msgdump%s.csv' % self.startup_time.isoformat())
         except:
             traceback.print_exc()
     '''
