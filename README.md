@@ -19,8 +19,8 @@ Use `@Idea help <command name>` to get usage instructions.
 * unpin
 > Unpin a message when the pushpin emoji is removed from it.
 
-* z_invalid
+* zzr_invalid
 > Do nothing on invalid reaction (this doesn't do anything).
 
-* zz_invalid
+* zzc_invalid
 > Get a helpful message on invalid DirectOnlyCommand (a message involving `@Idea`).
